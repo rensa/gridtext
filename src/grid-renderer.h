@@ -74,10 +74,22 @@ public:
     RObject fill_obj = gpar_lookup(gp, "fill");
 
     if (!fill_obj.isNULL()) {
-      CharacterVector fill(fill_obj);
-      if (fill.size() > 0 && !CharacterVector::is_na(fill[0])) {
+
+      Rcout << "FILL OBJ CLASSES: " << std::endl;
+      Rcpp::print(fill_obj.attr("class"));
+
+      // check fill object presence depending on type
+      if (fill_obj.inherits("GridPattern")) {
+        // gradient or pattern
         have_fill_col = true;
+      } else {
+        // a string (neither a gradient nor a pattern)
+        CharacterVector fill(fill_obj);
+        if (fill.size() > 0 && !CharacterVector::is_na(fill[0])) {
+          have_fill_col = true;
+        }
       }
+
     }
 
     // if we have a fill color, further checks don't matter
