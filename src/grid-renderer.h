@@ -75,7 +75,6 @@ public:
 
     if (!fill_obj.isNULL()) {
 
-      Rcout << "FILL OBJ CLASSES: " << std::endl;
       Rcpp::print(fill_obj.attr("class"));
 
       // check fill object presence depending on type
