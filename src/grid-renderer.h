@@ -75,8 +75,6 @@ public:
 
     if (!fill_obj.isNULL()) {
 
-      Rcpp::print(fill_obj.attr("class"));
-
       // check fill object presence depending on type
       if (fill_obj.inherits("GridPattern")) {
         // gradient or pattern
